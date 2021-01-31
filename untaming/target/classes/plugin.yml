@@ -1,0 +1,4 @@
+name: Untaming
+version: 1.0-SNAPSHOT
+main: devlaunchers.untaming.Untaming
+api-version: 1.16
