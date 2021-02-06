@@ -1,0 +1,4 @@
+name: Tamingplus
+version: 1.0-SNAPSHOT
+main: devlaunchers.tamingplus.Tamingplus
+api-version: 1.16

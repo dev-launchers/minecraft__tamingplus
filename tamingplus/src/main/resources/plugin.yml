@@ -1,0 +1,4 @@
+name: Tamingplus
+version: ${project.version}
+main: devlaunchers.tamingplus.Tamingplus
+api-version: 1.16
