@@ -1,4 +1,0 @@
-name: Untaming
-version: ${project.version}
-main: devlaunchers.untaming.Untaming
-api-version: 1.16
