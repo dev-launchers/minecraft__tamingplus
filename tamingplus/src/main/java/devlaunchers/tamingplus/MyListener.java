@@ -1,5 +1,6 @@
 package devlaunchers.tamingplus;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.*;
@@ -41,27 +42,33 @@ public class MyListener implements Listener {
         if (typeOfMobInt  == 9)
             typeOfMobString = "parrots";
         Boolean mobIsSittableTameable;
+        Location playerLocation = player.getLocation();
         for (Entity selectedEntity : world.getLivingEntities()) {
-            mobIsSittableTameable = false;
-            if (typeOfMobInt == 1 && selectedEntity instanceof Wolf) {
-                mobIsSittableTameable = true;
-            }
-            if (typeOfMobInt == 4 && selectedEntity instanceof Cat) {
-                mobIsSittableTameable = true;
-            }
-            if (typeOfMobInt == 9 && selectedEntity instanceof Parrot) {
-                mobIsSittableTameable = true;
-            }
-            if (mobIsSittableTameable) {
-                Tameable selectedTamableEntity = (Tameable)selectedEntity;
-                Sittable selectedSittableEntity = (Sittable)selectedEntity;
-                if (selectedTamableEntity.isTamed()) {
-                    if (selectedTamableEntity.getOwnerUniqueId().equals(player.getUniqueId())) {
-                        selectedSittableEntity.setSitting(whistleType > 0);
+            Location entityLocation = selectedEntity.getLocation();
+            int entityPlayerXCoordDifference = Math.abs(playerLocation.getBlockX()- entityLocation.getBlockX());
+            int entityPlayerYCoordDifference = Math.abs(playerLocation.getBlockY()- entityLocation.getBlockY());
+            double entityPlayerCoordDifference = Math.sqrt(entityPlayerXCoordDifference * entityPlayerXCoordDifference + entityPlayerYCoordDifference * entityPlayerYCoordDifference);
+            if(entityPlayerCoordDifference < 50){
+                mobIsSittableTameable = false;
+                if (typeOfMobInt == 1 && selectedEntity instanceof Wolf) {
+                    mobIsSittableTameable = true;
+                }
+                if (typeOfMobInt == 4 && selectedEntity instanceof Cat) {
+                    mobIsSittableTameable = true;
+                }
+                if (typeOfMobInt == 9 && selectedEntity instanceof Parrot) {
+                    mobIsSittableTameable = true;
+                }
+                if (mobIsSittableTameable) {
+                    Tameable selectedTamableEntity = (Tameable)selectedEntity;
+                    Sittable selectedSittableEntity = (Sittable)selectedEntity;
+                    if (selectedTamableEntity.isTamed()) {
+                        if (selectedTamableEntity.getOwnerUniqueId().equals(player.getUniqueId())) {
+                            selectedSittableEntity.setSitting(whistleType > 0);
+                        }
                     }
                 }
             }
-
         }
         if(whistleType > 0){
             player.sendMessage(player.getUniqueId(), "Your ".concat(typeOfMobString).concat(" are standing!"));
