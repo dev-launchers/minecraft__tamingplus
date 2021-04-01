@@ -77,41 +77,7 @@ public class MyListener implements Listener {
             player.sendMessage(player.getUniqueId(), "Your ".concat(typeOfMobString).concat(" are standing!"));
         }
     }
-/*
-    public void dogSit(PlayerInteractEvent event){
-        World world = event.getPlayer().getWorld();
-        Player player = event.getPlayer();
-        player.sendMessage(player.getUniqueId(), "Your dogs are sitting!");
-        for (Entity selectedEntity : world.getLivingEntities()) {
-            if (selectedEntity instanceof Tameable) {
-                Wolf selectedWolf = (Wolf) selectedEntity;
-                if(selectedWolf.isTamed()){
-                    if (selectedWolf.getOwnerUniqueId().equals(player.getUniqueId())) {
-                        selectedWolf.setSitting(true);
-                    }
-                }
 
-            }
-        }
-    }
-
-    public void dogStand(PlayerInteractEvent event){
-        World world = event.getPlayer().getWorld();
-        Player player = event.getPlayer();
-        player.sendMessage(player.getUniqueId(), "Your dogs are standing!");
-        for (Entity selectedEntity : world.getLivingEntities()) {
-            if (selectedEntity instanceof Tameable) {
-                Wolf selectedWolf = (Wolf) selectedEntity;
-                if(selectedWolf.isTamed()){
-                    if (selectedWolf.getOwnerUniqueId().equals(player.getUniqueId())) {
-                        selectedWolf.setSitting(false);
-                    }
-                }
-
-            }
-        }
-    }
-*/
     public void dogCalm(PlayerInteractEvent event){
         World world = event.getPlayer().getWorld();
         Player player = event.getPlayer();

@@ -2,3 +2,8 @@ name: Tamingplus
 version: ${project.version}
 main: devlaunchers.tamingplus.Tamingplus
 api-version: 1.16
+commands:
+  giveWhistle:
+    description: Gives you whistle
+    usage: /giveWhistle 7 255
+    permission: TamingPlus.giveWhistles
