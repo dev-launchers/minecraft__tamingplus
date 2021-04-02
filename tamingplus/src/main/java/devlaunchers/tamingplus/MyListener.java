@@ -6,6 +6,7 @@ import org.bukkit.World;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -120,7 +121,7 @@ custom model data = 1 for untaming item
 */
     @EventHandler
     public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
-        ItemStack itemInHand = event.getPlayer().getInventory().getItemInMainHand();
+    	ItemStack itemInHand = event.getPlayer().getInventory().getItemInMainHand();
         if (event.getHand().toString().equals("OFF_HAND")) {
             itemInHand = event.getPlayer().getInventory().getItemInOffHand();
         }
@@ -136,24 +137,26 @@ custom model data = 1 for untaming item
         }
     }
 
-    @EventHandler
-    public void onPlayerInteractEvent(PlayerInteractEvent event){
-        ItemStack itemInHand = event.getPlayer().getInventory().getItemInMainHand();
-        if (event.getHand().toString().equals("OFF_HAND")) {
-            itemInHand = event.getPlayer().getInventory().getItemInOffHand();
-        }
-        Material itemInHandType = itemInHand.getType();
-        if(itemInHandType.equals(Material.IRON_NUGGET)){
-            ItemMeta itemInHandMeta = itemInHand.getItemMeta();
-            if(itemInHandMeta.hasCustomModelData()){
-                int itemInHandCustomModelData = itemInHandMeta.getCustomModelData();
-                if(itemInHandCustomModelData == 4){
-                    dogCalm(event);
-                }
-                else if(itemInHandCustomModelData >= 1 && itemInHandCustomModelData <= 7 ){
-                    petSitStand(event, (itemInHandCustomModelData - 4));
-                }
-            }
-        }
-    }
+	@EventHandler
+	public void onPlayerInteractEvent(PlayerInteractEvent event) {
+		if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+
+			ItemStack itemInHand = event.getPlayer().getInventory().getItemInMainHand();
+			if (event.getHand().toString().equals("OFF_HAND")) {
+				itemInHand = event.getPlayer().getInventory().getItemInOffHand();
+			}
+			Material itemInHandType = itemInHand.getType();
+			if (itemInHandType.equals(Material.IRON_NUGGET)) {
+				ItemMeta itemInHandMeta = itemInHand.getItemMeta();
+				if (itemInHandMeta.hasCustomModelData()) {
+					int itemInHandCustomModelData = itemInHandMeta.getCustomModelData();
+					if (itemInHandCustomModelData == 4) {
+						dogCalm(event);
+					} else if (itemInHandCustomModelData >= 1 && itemInHandCustomModelData <= 7) {
+						petSitStand(event, (itemInHandCustomModelData - 4));
+					}
+				}
+			}
+		}
+	}
 }
