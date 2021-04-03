@@ -121,14 +121,15 @@ custom model data = 1 for untaming item
 */
     @EventHandler
     public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
-    	ItemStack itemInHand = event.getPlayer().getInventory().getItemInMainHand();
+
+        ItemStack itemInHand = event.getPlayer().getInventory().getItemInMainHand();
         if (event.getHand().toString().equals("OFF_HAND")) {
-            itemInHand = event.getPlayer().getInventory().getItemInOffHand();
+                itemInHand = event.getPlayer().getInventory().getItemInOffHand();
         }
         Material itemInHandType = itemInHand.getType();
-        if(itemInHandType.equals(Material.COAL)){
+        if (itemInHandType.equals(Material.COAL)) {
             ItemMeta itemInHandMeta = itemInHand.getItemMeta();
-            if(itemInHandMeta.hasCustomModelData()) {
+            if (itemInHandMeta.hasCustomModelData()) {
                 int itemInHandCustomModelData = itemInHandMeta.getCustomModelData();
                 if (itemInHandCustomModelData == 1) {
                     untamePet(event);
