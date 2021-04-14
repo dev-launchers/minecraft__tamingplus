@@ -7,7 +7,3 @@ commands:
     description: Gives you whistle
     usage: /giveWhistle 7 255
     permission: TamingPlus.giveWhistles
-  giveUntaming:
-    description: Gives you untaming coal
-    usage: /giveUntamingCoal 7
-    permission: TamingPlus.giveUntaming
