@@ -8,7 +8,7 @@ public final class Tamingplus extends JavaPlugin {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new MyListener(), this);
         System.out.println("running plugin");
-        this.getCommand("giveWhistle").setExecutor(new GiveWhistleCommand());
+        this.getCommand("giveTamingItem").setExecutor(new GiveTamingItemCommand());
 
     }
 
